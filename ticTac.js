@@ -1,117 +1,305 @@
-var turn = 'X';
-var score = {
-    'X': 0,
-    'O': 0
-};
-var gridValue = 0;
-function fnLoad() {
-    var select = document.getElementById("grid");
-    for (i = 3; i <= 100; i += 1) {
-        var option = document.createElement('option');
-        select.options[select.options.length] = new Option(i + ' X ' + i, i);
-    }
-    addEvent(document.getElementById("game"), "click", fnChoose);
+var human = 'x'; 
+var computer = 'o';
+var humanMove;
+var compMove;
+var turn = 0; 
 
-    fnNewGame();
-}
-function addEvent(element, eventName, callback) {
+var boardCheck; 
+var a1; 
+var a2;
+var a3;
+var b1;
+var b2;
+var b3;
+var c1;
+var c2;
+var c3;
 
-    if (element.addEventListener) {
-        element.addEventListener(eventName, callback, false);
-    } else if (element.attachEvent) {
-        element.attachEvent("on" + eventName, callback);
-    }
-}
-function fnChoose(e) {
-    if (e.target && e.target.nodeName == "TD") {
-        var targetElement = document.getElementById(e.target.id);
-        var prevTurn;
-        if ((targetElement.className).indexOf("disabled") == -1) {
-            targetElement.innerHTML = turn;
-            targetElement.classList.add('disabled');
-            targetElement.classList.add(turn);
-            score[turn] += 1;
-            prevTurn = turn;
-            turn = turn === "X" ? "O" : "X";
-            if (fndecide(targetElement, prevTurn)) {
-                alert(prevTurn + ' has won the game');
-                fnNewGame();
-            } else if ((score['X'] + score['O']) == (gridValue * gridValue)) {
-                alert('Draw!');
-                fnNewGame();
-            }
+var checkWin; 
+var xWin = false; 
+var oWin = false; 
+var winAlert; 
+var newGame;
+var clearBoard;
+
+
+var newGame = function () {
+    $('td').one('click', function (event) {
+        if (turn == 0) {
+            $(this).text(human);
+            boardCheck();
+            checkWin();
+            turn == 1;
+            humanMove();
+            compMove();
+            boardCheck();
+            checkWin();
         }
-    }
-}
-function fndecide(targetElement, prevTurn) {
-    var UL = document.getElementById('game');
-    var elements, i, j, cnt;
-    if (score[prevTurn] >= gridValue) {
-        var classes = targetElement.className.split(/\s+/);
-        for (i = 0; i < classes.length; i += 1) {
-            cnt = 0;
-            if (classes[i].indexOf('row') !== -1 || classes[i].indexOf('col') !== -1 || classes[i].indexOf('dia') !== -1) {
-                elements = UL.getElementsByClassName(classes[i]);
-                for (j = 0; j < elements.length; j += 1) {
-                    if (elements[j].innerHTML == prevTurn) {
-                        cnt += 1;
+    });
+};
+
+
+
+$(document).ready(function () {
+    newGame();
+});
+
+
+var compMove = function () {
+    if (a1 == "" && ((a3 == "x" && a2 == "x") || (c3 == "x" && b2 == "x") || (c1 == "x" && b1 == "x"))) {
+        $('#a1').text("o");
+        turn = 0;
+    } else {
+      if (a2 == "" && ((a1 == "x" && a3 == "x") || (c2 == "x" && b2 == "x"))) {
+        $('#a2').text("o");
+        turn = 0;
+        }
+        else{
+        if (a3 == "" && ((a1 == "x" && a2 == "x") || (c1 == "x" && b2 == "x") || (c3 == "x" && b3 == "x"))) {
+            $('#a3').text("o");
+            turn = 0;
+        }
+            else{
+            if (c3 == "" && ((c1 == "x" && c2 == "x") || (a1 == "x" && b2 == "x") || (a3 == "x" && b3 == "x"))) {
+                $('#c3').text("o");
+                turn = 0;
+        }
+                else{
+                if (c1 == "" && ((c3 == "x" && c2 == "x") || (a3 == "x" && b2 == "x") || (a1 == "x" && b1 == "x"))) {
+                    $('#c1').text("o");
+                    turn = 0;
+        }
+                    else{
+                    if (c2 == "" && ((c3 == "x" && c1 == "x") || (a2 == "x" && b2 == "x"))) {
+                        $('#c2').text("o");
+                        turn = 0;
+        }
+                        else{
+                        if (b1 == "" && ((b3 == "x" && b2 == "x") || (a1 == "x" && c1 == "x"))) {
+                            $('#b1').text("o");
+                            turn = 0;
+        }
+                            else{
+                            if (b3 == "" && ((a3 == "x" && c3 == "x") || (b2 == "x" && b1 == "x"))) {
+                                $('#b3').text("o");
+                                turn = 0;
+        }
+                                else{
+                                if (b2 == "" && ((a3 == "x" && c1 == "x") || (c3 == "x" && a1 == "x") || (b3 == "x" && b1 == "x") || (c2 == "x" && a2 == "x"))) {
+                                    $('#b2').text("o");
+                                    turn = 0;
+        }
+                                   else{ 
+                                    if (b2 == "") {
+                                        $('#b2').text("o");
+                                        turn = 0;
+                                       
+                                    }
+                                        else{
+                                        if (a1 == "") {
+                                            $('#a1').text("o");
+                                            turn = 0;
+                                            
+                                    }
+                                            else{
+                                            if (c3 == "") {
+                                            $('#c3').text("o");
+                                            turn = 0;
+                                          
+                                    } 
+                                                else {
+                                                if (c2 == "") {
+                                            $('#c2').text("o");
+                                            turn = 0;
+                                          
+                                    }
+                                                    else{
+                                                    if (b1 == "") {
+                                            $('#b1').text("o");
+                                            turn = 0;
+                                          
+                                    }
+                                                    }
+                                                }
+                                            }
+                                   
+                                    
+                                        }
+                                   }
+                                }
+                            }
+                        }
                     }
                 }
-                if (cnt == gridValue) {
-                    return true;
+            }
+        }
+    }   
+};
+var humanMove = function () {
+    if (a1 == "" && ((a3 == "o" && a2 == "o") || (c3 == "o" && b2 == "o") || (c1 == "o" && b1 == "o"))) {
+        $('#a1').text("x");
+        turn = 0;
+    } else {
+      if (a2 == "" && ((a1 == "o" && a3 == "o") || (c2 == "o" && b2 == "o"))) {
+        $('#a2').text("x");
+        turn = 0;
+        }
+        else{
+        if (a3 == "" && ((a1 == "o" && a2 == "o") || (c1 == "o" && b2 == "o") || (c3 == "o" && b3 == "o"))) {
+            $('#a3').text("x");
+            turn = 0;
+        }
+            else{
+            if (c3 == "" && ((c1 == "o" && c2 == "o") || (a1 == "o" && b2 == "o") || (a3 == "o" && b3 == "o"))) {
+                $('#c3').text("x");
+                turn = 0;
+        }
+                else{
+                if (c1 == "" && ((c3 == "o" && c2 == "o") || (a3 == "o" && b2 == "o") || (a1 == "o" && b1 == "o"))) {
+                    $('#c1').text("x");
+                    turn = 0;
+        }
+                    else{
+                    if (c2 == "" && ((c3 == "o" && c1 == "o") || (a2 == "o" && b2 == "o"))) {
+                        $('#c2').text("x");
+                        turn = 0;
+        }
+                        else{
+                        if (b1 == "" && ((b3 == "o" && b2 == "o") || (a1 == "o" && c1 == "o"))) {
+                            $('#b1').text("x");
+                            turn = 0;
+        }
+                            else{
+                            if (b3 == "" && ((a3 == "o" && c3 == "o") || (b2 == "o" && b1 == "o"))) {
+                                $('#b3').text("x");
+                                turn = 0;
+        }
+                                else{
+                                if (b2 == "" && ((a3 == "o" && c1 == "o") || (c3 == "o" && a1 == "o") || (b3 == "o" && b1 == "o") || (c2 == "o" && a2 == "o"))) {
+                                    $('#b2').text("x");
+                                    turn = 0;
+        }
+                                   else{ 
+                                    if (b2 == "") {
+                                        $('#b2').text("x");
+                                        turn = 0;
+                                       
+                                    }
+                                        else{
+                                        if (a1 == "") {
+                                            $('#a1').text("x");
+                                            turn = 0;
+                                            
+                                    }
+                                            else{
+                                            if (c3 == "") {
+                                            $('#c3').text("x");
+                                            turn = 0;
+                                          
+                                    } 
+                                                else {
+                                                if (c2 == "") {
+                                            $('#c2').text("x");
+                                            turn = 0;
+                                          
+                                    }
+                                                    else{
+                                                    if (b1 == "") {
+                                            $('#b1').text("x");
+                                            turn = 0;
+                                          
+                                    }
+                                                    }
+                                                }
+                                            }
+                                   
+                                    
+                                        }
+                                   }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
-    }
-    return false;
-}
-function fnNewGame() {
-    var gameUL = document.getElementById("game");
-    if (gameUL.innerHTML !== '') {
-        gameUL.innerHTML = null;
-        score = {
-            'X': 0,
-            'O': 0
-        };
-        turn = 'X';
-        gridValue = 0;
-    }
-    var select = document.getElementById("grid");
-    gridValue = select.options[select.selectedIndex].value;
-    var i, j, li, k = 0,
-        classLists;
-    var gridAdd = +gridValue + 1;
+    }   
+};
 
-    for (i = 1; i <= gridValue; i += 1) {
-        tr = document.createElement('tr');
-        for (j = 1; j <= gridValue; j += 1) {
-            k += 1;
-            li = document.createElement('td');
-            li.setAttribute("id", 'li' + k);
 
-            classLists = 'td row' + i + ' col' + j;
 
-            if (i === j) {
-                classLists = 'td row' + i + ' col' + j + ' dia0';
+boardCheck = function () {
+    a1 = $('#a1').html();
+    a2 = $('#a2').html();
+    a3 = $('#a3').html();
+    b1 = $('#b1').html();
+    b2 = $('#b2').html();
+    b3 = $('#b3').html();
+    c1 = $('#c1').html();
+    c2 = $('#c2').html();
+    c3 = $('#c3').html();
+};
+
+checkWin = function () { 
+    if ((a1 == a2 && a1 == a3 && (a1 == "x")) || 
+    (b1 == b2 && b1 == b3 && (b1 == "x")) || 
+    (c1 == c2 && c1 == c3 && (c1 == "x")) || 
+    (a1 == b1 && a1 == c1 && (a1 == "x")) || 
+    (a2 == b2 && a2 == c2 && (a2 == "x")) || 
+    (a3 == b3 && a3 == c3 && (a3 == "x")) ||
+    (a1 == b2 && a1 == c3 && (a1 == "x")) ||
+    (a3 == b2 && a3 == c1 && (a3 == "x")) 
+    ) {
+        xWin = true;
+        winAlert();
+
+    } else { 
+        if ((a1 == a2 && a1 == a3 && (a1 == "o")) || //first row
+        (b1 == b2 && b1 == b3 && (b1 == "o")) || //second row
+        (c1 == c2 && c1 == c3 && (c1 == "o")) || //third row
+        (a1 == b1 && a1 == c1 && (a1 == "o")) || //first column
+        (a2 == b2 && a2 == c2 && (a2 == "o")) || //second column
+        (a3 == b3 && a3 == c3 && (a3 == "o")) || //third column
+        (a1 == b2 && a1 == c3 && (a1 == "o")) || //diagonal 1
+        (a3 == b2 && a3 == c1 && (a3 == "o")) //diagonal 2
+        ) {
+            oWin = true;
+            winAlert();
+
+        } else { 
+            if (((a1 == "x") || (a1 == "o")) && ((b1 == "x") || (b1 == "o")) && ((c1 == "x") || (c1 == "o")) && ((a2 == "x") || (a2 == "o")) && ((b2 == "x") || (b2 == "o")) && ((c2 == "x") || (c2 == "o")) && ((a3 == "x") || (a3 == "o")) && ((b3 == "x") || (b3 == "o")) && ((c3 == "x") || (c3 == "o"))) {
+                alert("It's a tie!");
             }
-
-            if ((i + j) === gridAdd) {
-                classLists = 'td row' + i + ' col' + j + ' dia1';
-            }
-
-            if (!isEven(gridValue) && (Math.round(gridValue / 2) === i && Math.round(gridValue / 2) === j))
-                classLists = 'td row' + i + ' col' + j + ' dia0 dia1';
-
-            li.className = classLists;
-            tr.appendChild(li);
-
         }
-        gameUL.appendChild(tr);
     }
-}
-function isEven(value) {
-    if (value % 2 == 0)
-        return true;
-    else
-        return false;
-}
+};
+
+
+var winAlert = function () {
+    if (xWin == true) {
+        alert("Human!");
+        clearBoard(); 
+    } else {
+        if (oWin == true) {
+            alert("Computer!");
+            clearBoard(); 
+        }
+    }
+};
+
+
+
+var clearBoard = $('#restart').click(function (event) {
+    a1 = $('#a1').text("");
+    b1 = $('#b1').text("");
+    c1 = $('#c1').text("");
+    a2 = $('#a2').text("");
+    b2 = $('#b2').text("");
+    c2 = $('#c2').text("");
+    a3 = $('#a3').text("");
+    b3 = $('#b3').text("");
+    c3 = $('#c3').text("");
+    xWin = false;
+    oWin = false;
+    newGame();
+    location.reload();
