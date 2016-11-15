@@ -1,60 +1,67 @@
-*{
-  -webkit-box-sizing: border-box; 
-  -moz-box-sizing: border-box;  
-  box-sizing: border-box; 
+ .center {
+    margin-right: auto;
+    margin-left: auto;
 }
 
-select {
-    padding:3px;
-    margin: 0;
-    -webkit-border-radius:4px;
-    -moz-border-radius:4px;
-    border-radius:4px;
-    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
-    background: #f8f8f8;
-    color:#888;
-    border:none;
-    outline:none;
-    display: inline-block;
-    -webkit-appearance:none;
-    -moz-appearance:none;
-    appearance:none;
-    cursor:pointer;
-    width:100px;
+.italic {
+    font-style: italic;
+    text-decoration: underline;
 }
-.minContainer {
-    padding: 20px;
-    padding-right: 30px;
-    position: absolute;
+ h1, h4 {
+    text-align: center;
+    font-family: sans-serif;
+    color: #666666;
+    border: 0;
 }
-
-table {
-    border-collapse:collapse;
-    table-layout: fixed;
-    border-spacing: 0;
+p {
+    text-align: center;
+    font-family: sans-serif;
+    line-height: 16pt;
+    color: #666666;
 }
-.td {
-    border: 2px solid #cccccc;
-    font-size:20px;
-    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
-    color:#ccc;
-    line-height: 1.428571429;
-    width: 30px;
-    height: 32px;
-    min-width: 32px;
-    max-width: 32px;
-    min-height: 32px;
-    max-height: 32px;
+.button {
+    margin-left:auto;
+    margin-right:auto;
     text-align: center;
 }
-
-.X{
-    background-color: #FF8362;    
+#restart {
+    font-size: 12pt;
+    color: #666666;
+    background-color: #dedede;
+    padding: 5px 15px 5px 15px;
 }
-
-.O{
-    background-color: #BB7365;
+ #board-outer {
+    height: 350px;
+    width: 350px;
+    background-color:none;
+    overflow: hidden;
 }
-</style>
+#board {
+    width: 354px;
+    height: 354px;
+    background-color:none;
+    border-spacing:0;
+    margin-left: -2px;
+    margin-top: -2px;
+}
+td {
+    height: 116px;
+    width: 116px;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 40pt;
+    border-collapse: collapse;
+    border: 2px solid #B9E9F0;
+    text-transform: uppercase;
+    color: #999999;
+}
+.x {
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+}
+.o {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
