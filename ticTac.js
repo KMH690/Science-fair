@@ -138,75 +138,75 @@ var compMove = function () {
 var humanMove = function () {
     if (a1 == "" && ((a3 == "o" && a2 == "o") || (c3 == "o" && b2 == "o") || (c1 == "o" && b1 == "o"))) {
         $('#a1').text("x");
-        turn = 0;
+        turn = 1;
     } else {
       if (a2 == "" && ((a1 == "o" && a3 == "o") || (c2 == "o" && b2 == "o"))) {
         $('#a2').text("x");
-        turn = 0;
+        turn = 1;
         }
         else{
         if (a3 == "" && ((a1 == "o" && a2 == "o") || (c1 == "o" && b2 == "o") || (c3 == "o" && b3 == "o"))) {
             $('#a3').text("x");
-            turn = 0;
+            turn = 1;
         }
             else{
             if (c3 == "" && ((c1 == "o" && c2 == "o") || (a1 == "o" && b2 == "o") || (a3 == "o" && b3 == "o"))) {
                 $('#c3').text("x");
-                turn = 0;
+                turn = 1;
         }
                 else{
                 if (c1 == "" && ((c3 == "o" && c2 == "o") || (a3 == "o" && b2 == "o") || (a1 == "o" && b1 == "o"))) {
                     $('#c1').text("x");
-                    turn = 0;
+                    turn = 1;
         }
                     else{
                     if (c2 == "" && ((c3 == "o" && c1 == "o") || (a2 == "o" && b2 == "o"))) {
                         $('#c2').text("x");
-                        turn = 0;
+                        turn = 1;
         }
                         else{
                         if (b1 == "" && ((b3 == "o" && b2 == "o") || (a1 == "o" && c1 == "o"))) {
                             $('#b1').text("x");
-                            turn = 0;
+                            turn = 1;
         }
                             else{
                             if (b3 == "" && ((a3 == "o" && c3 == "o") || (b2 == "o" && b1 == "o"))) {
                                 $('#b3').text("x");
-                                turn = 0;
+                                turn = 1;
         }
                                 else{
                                 if (b2 == "" && ((a3 == "o" && c1 == "o") || (c3 == "o" && a1 == "o") || (b3 == "o" && b1 == "o") || (c2 == "o" && a2 == "o"))) {
                                     $('#b2').text("x");
-                                    turn = 0;
+                                    turn = 1;
         }
                                    else{ 
                                     if (b2 == "") {
                                         $('#b2').text("x");
-                                        turn = 0;
+                                        turn = 1;
                                        
                                     }
                                         else{
                                         if (a1 == "") {
                                             $('#a1').text("x");
-                                            turn = 0;
+                                            turn = 1;
                                             
                                     }
                                             else{
                                             if (c3 == "") {
                                             $('#c3').text("x");
-                                            turn = 0;
+                                            turn = 1;
                                           
                                     } 
                                                 else {
                                                 if (c2 == "") {
                                             $('#c2').text("x");
-                                            turn = 0;
+                                            turn = 1;
                                           
                                     }
                                                     else{
                                                     if (b1 == "") {
                                             $('#b1').text("x");
-                                            turn = 0;
+                                            turn = 1;
                                           
                                     }
                                                     }
