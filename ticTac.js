@@ -1,6 +1,5 @@
 var human = 'x'; 
 var computer = 'o';
-var humanMove;
 var compMove;
 var turn = 0; 
 
@@ -30,7 +29,6 @@ var newGame = function () {
             boardCheck();
             checkWin();
             turn == 1;
-            humanMove();
             compMove();
             boardCheck();
             checkWin();
@@ -55,12 +53,12 @@ var compMove = function () {
         turn = 0;
         }
         else{
-        if (a3 == "" && ((a1 == "x" && a2 == "x") || (c1 == "x" && b2 == "x") || (c3 == "x" && b3 == "x"))) {
+        if (a3 == "" && ((a1 == "x" && c3 == "x") || (c1 == "x" && b2 == "x") || (c3 == "x" && b3 == "x"))) {
             $('#a3').text("o");
             turn = 0;
         }
             else{
-            if (c3 == "" && ((c1 == "x" && c2 == "x") || (a1 == "x" && b2 == "x") || (a3 == "x" && b3 == "x"))) {
+            if (c3 == "" && ((a1 == "x" && c3 == "x" && c1 == "x") || (a1 == "x" && b2 == "x") || (a3 == "x" && b3 == "x"))) {
                 $('#c3').text("o");
                 turn = 0;
         }
@@ -90,14 +88,14 @@ var compMove = function () {
                                     turn = 0;
         }
                                    else{ 
-                                    if (b2 == "") {
+                                    if (a1 == "x" && (b2 == "")) {
                                         $('#b2').text("o");
                                         turn = 0;
                                        
                                     }
                                         else{
-                                        if (a1 == "") {
-                                            $('#a1').text("o");
+                                        if (b1 == "x" && (b2 == "")) {
+                                            $('#b2').text("o");
                                             turn = 0;
                                             
                                     }
@@ -135,98 +133,6 @@ var compMove = function () {
         }
     }   
 };
-var humanMove = function () {
-    if (a1 == "" && ((a3 == "o" && a2 == "o") || (c3 == "o" && b2 == "o") || (c1 == "o" && b1 == "o"))) {
-        $('#a1').text("x");
-        turn = 1;
-    } else {
-      if (a2 == "" && ((a1 == "o" && a3 == "o") || (c2 == "o" && b2 == "o"))) {
-        $('#a2').text("x");
-        turn = 1;
-        }
-        else{
-        if (a3 == "" && ((a1 == "o" && a2 == "o") || (c1 == "o" && b2 == "o") || (c3 == "o" && b3 == "o"))) {
-            $('#a3').text("x");
-            turn = 1;
-        }
-            else{
-            if (c3 == "" && ((c1 == "o" && c2 == "o") || (a1 == "o" && b2 == "o") || (a3 == "o" && b3 == "o"))) {
-                $('#c3').text("x");
-                turn = 1;
-        }
-                else{
-                if (c1 == "" && ((c3 == "o" && c2 == "o") || (a3 == "o" && b2 == "o") || (a1 == "o" && b1 == "o"))) {
-                    $('#c1').text("x");
-                    turn = 1;
-        }
-                    else{
-                    if (c2 == "" && ((c3 == "o" && c1 == "o") || (a2 == "o" && b2 == "o"))) {
-                        $('#c2').text("x");
-                        turn = 1;
-        }
-                        else{
-                        if (b1 == "" && ((b3 == "o" && b2 == "o") || (a1 == "o" && c1 == "o"))) {
-                            $('#b1').text("x");
-                            turn = 1;
-        }
-                            else{
-                            if (b3 == "" && ((a3 == "o" && c3 == "o") || (b2 == "o" && b1 == "o"))) {
-                                $('#b3').text("x");
-                                turn = 1;
-        }
-                                else{
-                                if (b2 == "" && ((a3 == "o" && c1 == "o") || (c3 == "o" && a1 == "o") || (b3 == "o" && b1 == "o") || (c2 == "o" && a2 == "o"))) {
-                                    $('#b2').text("x");
-                                    turn = 1;
-        }
-                                   else{ 
-                                    if (b2 == "") {
-                                        $('#b2').text("x");
-                                        turn = 1;
-                                       
-                                    }
-                                        else{
-                                        if (a1 == "") {
-                                            $('#a1').text("x");
-                                            turn = 1;
-                                            
-                                    }
-                                            else{
-                                            if (c3 == "") {
-                                            $('#c3').text("x");
-                                            turn = 1;
-                                          
-                                    } 
-                                                else {
-                                                if (c2 == "") {
-                                            $('#c2').text("x");
-                                            turn = 1;
-                                          
-                                    }
-                                                    else{
-                                                    if (b1 == "") {
-                                            $('#b1').text("x");
-                                            turn = 1;
-                                          
-                                    }
-                                                    }
-                                                }
-                                            }
-                                   
-                                    
-                                        }
-                                   }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }   
-};
-
-
 
 boardCheck = function () {
     a1 = $('#a1').html();
